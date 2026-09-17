@@ -1,215 +1,56 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>산지직송 싱싱 완숙 토마토</title>
+    <title>과제 페이지</title>
     <style>
-        /* 기본 리셋 설정 */
-        * {
-            box-sizing: border-box;
+        html {
+
+            scroll-behavior: smooth;
+        }
+
+
+        /*상단 스티키 메뉴 설정*/
+        sticky-nav {
+            position: sticky;
+            top: 0;
+            /*화면 맨 위에 도달하면 고정한다.*/
+            background-color: #ffffff;
+            border-bottom: 2px solid #ddd;
+            z-index: 1000;
+        }
+
+        .sticky-nav ul {
+            display: flex;
+            list-style: none;
             margin: 0;
             padding: 0;
         }
-        body {
-            font-family: 'Pretendard', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background-color: #f9f9f9;
-        }
 
-        /* 1. ::selection (마우스 드래그 시 토마토 빨간색 반전) */
-        ::selection {
-            background-color: #e63946;
-            color: white;
-        }
-
-        /* 헤더 영역 */
-        header {
-            background-color: #e63946;
-            color: white;
-            text-align: center;
-            padding: 25px 0 15px 0;
-        }
-        header h1 {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        /* 2. GNB (상단 메뉴바) - position: sticky 적용으로 스크롤 시 상단 고정 */
-        nav.gnb {
-            position: sticky; 
-            top: 0;
-            background-color: #ffffff;
-            border-bottom: 2px solid #e63946;
-            z-index: 1000;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.08);
-        }
-
-        nav.gnb ul {
-            display: flex;
-            justify-content: center;
-            list-style: none;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        nav.gnb li {
+        .sticky-nav li {
             flex: 1;
             text-align: center;
         }
 
-        nav.gnb a {
+        .sticky-nav a {
             display: block;
-            padding: 15px 0; /* padding으로 안쪽 클릭 영역 확보 */
-            text-decoration: none;
-            color: #555;
-            font-weight: 700; /* font-weight 굵게 */
-            transition: all 0.2s ease;
-        }
-
-        /* li a:hover (마우스 올렸을 때 효과) */
-        nav.gnb a:hover {
-            color: #e63946;
-            background-color: #fff5f5;
-        }
-
-        /* 3. 본문 컨테이너 */
-        .container {
-            max-width: 800px;
-            margin: 30px auto; /* margin 바깥쪽 여백으로 중앙 정렬 및 위아래 간격 확보 */
-            padding: 0 20px;
-        }
-
-        /* 각 카드 섹션 */
-        section {
-            background: white;
-            padding: 30px; /* padding 안쪽 여백 */
-            margin-bottom: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        section h2 {
-            font-size: 20px;
-            border-bottom: 2px solid #333;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        section h2::before {
-            content: "🍅 "; /* 가상 요소 ::before 활용 */
-        }
-
-        /* [섹션 1] 상품설명 */
-        .product-main {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-        .product-img {
-            width: 250px;
-            height: 200px;
-            background-color: #ffb703;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 70px;
-        }
-        .product-info {
-            flex: 1;
-        }
-        .price {
-            font-size: 24px;
-            font-weight: 900;
-            color: #e63946;
-            margin: 15px 0;
-        }
-        .btn-buy {
-            background-color: #e63946;
-            color: white;
-            padding: 12px 24px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 700;
-            cursor: pointer;
-        }
-        .btn-buy:hover {
-            background-color: #d62828;
-        }
-
-        /* [섹션 2] 상세정보 (표 구조: tbody, tr, td) */
-        table.info-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table.info-table th, table.info-table td {
-            border: 1px solid #ddd;
-            padding: 12px; /* td padding 안쪽 여백 */
-            text-align: left;
-        }
-        table.info-table th {
-            background-color: #f8f9fa;
-            width: 30%;
-            font-weight: 700;
-        }
-
-        /* [섹션 3] 후기 */
-        .review-list {
-            list-style: none;
-        }
-        .review-item {
             padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .review-item:hover {
-            background-color: #fafafa;
-        }
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .stars {
-            color: #ffb703;
-        }
-
-        /* [섹션 4] 문의 */
-        .qna-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .qna-table th, .qna-table td {
-            padding: 12px;
-            border-bottom: 1px solid #ddd;
-            text-align: center;
-        }
-        .qna-table th {
-            background-color: #f8f9fa;
-        }
-        .status-done {
-            color: #2a9d8f;
+            text-decoration: none;
+            color: #333;
             font-weight: bold;
         }
 
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #888;
-            font-size: 14px;
+        .sticky-nav a:hover {
+            background-color: #f0f0f0;
+            color: #007bff;
         }
     </style>
 </head>
+
 <body>
-
-    <header>
-        <h1>🍅 싱싱 유기농 토마토 농장</h1>
-    </header>
-
-    <!-- 1. 상단 메뉴 (GNB): position: sticky 적용 -->
-    <nav class="gnb">
+<nav class="sticky-nav">
         <ul>
             <li><a href="#desc">상품설명</a></li>
             <li><a href="#detail">상세정보</a></li>
@@ -218,100 +59,26 @@
         </ul>
     </nav>
 
-    <div class="container">
-        <!-- 1. 상품설명 섹션 -->
-        <section id="desc">
-            <h2>상품설명</h2>
-            <div class="product-main">
-                <div class="product-img">🍅</div>
-                <div class="product-info">
-                    <h3>[친환경] 산지직송 찰토마토 2kg / 5kg</h3>
-                    <p style="color: #666; margin-top: 5px;">햇살을 듬뿍 받고 자란 당도 높은 완숙 찰토마토입니다.</p>
-                    <div class="price">15,900원</div>
-                    <button class="btn-buy">지금 구매하기</button>
-                </div>
-            </div>
-        </section>
+    <!-- 각 콘텐츠 영역 -->
+    <section id="desc">
+        <h2>상품설명</h2>
+        <p>여기는 상품 설명 영역입니다.</p>
+    </section>
 
-        <!-- 2. 상세정보 섹션 (표 구조 활용) -->
-        <section id="detail">
-            <h2>상세정보</h2>
-            <table class="info-table">
-                <tbody>
-                    <tr>
-                        <th>품목/명칭</th>
-                        <td>국내산 완숙 찰토마토</td>
-                    </tr>
-                    <tr>
-                        <th>중량/수량</th>
-                        <td>2kg / 5kg (선택)</td>
-                    </tr>
-                    <tr>
-                        <th>원산지</th>
-                        <td>국내산 (전라북도 완주)</td>
-                    </tr>
-                    <tr>
-                        <th>보관방법</th>
-                        <td>직사광선을 피하고 통풍이 잘되는 서늘한 곳 보관</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+    <section id="detail">
+        <h2>상세정보</h2>
+        <p>여기는 상세정보 영역입니다.</p>
+    </section>
 
-        <!-- 3. 후기 섹션 -->
-        <section id="review">
-            <h2>구매 후기 (4.9 / 5.0)</h2>
-            <ul class="review-list">
-                <li class="review-item">
-                    <div class="review-header">
-                        <span>김*수 님</span>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p>토마토가 너무 단단하고 싱싱해요! 배송도 빠르고 만족스럽습니다.</p>
-                </li>
-                <li class="review-item">
-                    <div class="review-header">
-                        <span>이*영 님</span>
-                        <span class="stars">★★★★★</span>
-                    </div>
-                    <p>아침마다 주스 갈아먹으려고 5kg 주문했는데 상태가 최고네요.</p>
-                </li>
-            </ul>
-        </section>
+    <section id="review">
+        <h2>후기</h2>
+        <p>여기는 구매 후기 영역입니다.</p>
+    </section>
 
-        <!-- 4. 문의 섹션 -->
-        <section id="qna">
-            <h2>상품 문의</h2>
-            <table class="qna-table">
-                <thead>
-                    <tr>
-                        <th>번호</th>
-                        <th>제목</th>
-                        <th>작성자</th>
-                        <th>답변상태</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>2</td>
-                        <td>오늘 주문하면 언제 배송되나요?</td>
-                        <td>박*진</td>
-                        <td class="status-done">답변완료</td>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>보관은 냉장보관 해야 하나요?</td>
-                        <td>최*우</td>
-                        <td class="status-done">답변완료</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 토마토 농장. All rights reserved.</p>
-    </footer>
-
+    <section id="qna">
+        <h2>문의</h2>
+        <p>여기는 상품 문의 영역입니다.</p>
+    </section>
 </body>
+
 </html>
