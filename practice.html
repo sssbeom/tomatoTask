@@ -46,11 +46,17 @@
             background-color: #f0f0f0;
             color: #007bff;
         }
+
+        /*figure의 너비를 지정한다.*/
+        figure img {
+            width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 
 <body>
-<nav class="sticky-nav">
+    <nav class="sticky-nav">
         <ul>
             <li><a href="#desc">상품설명</a></li>
             <li><a href="#detail">상세정보</a></li>
@@ -62,8 +68,27 @@
     <!-- 각 콘텐츠 영역 -->
     <section id="desc">
         <h2>상품설명</h2>
-        <img src="">
-        <p>여기는 상품 설명 영역입니다.</p>
+        <!--시멘틱 태그 활용-->
+        <figure>
+            <img src="image/tum_1.jpg" alt="상품 대표 이미지">
+            <figcaption>
+                <!--브랜드 슬로건-->
+                
+                <strong class="product-title">Playful Modular Life</strong>
+
+                <!--제품명-->
+                <br/>
+                <small class="brand-slogan">루프 텀블러 모듈 591ml</small>
+
+                <!--본문-->
+                <p class="product-desc">
+                    루프 텀블러 모듈은 나의 취향과 일상에 맞춰 완성하는 새로운 루프 시리즈입니다.
+                    넉넉한 <span>591ml(20oz) 용량</span>으로 사무실, 캠퍼스, 장시간 외출 등
+                    충분한 음용량이 필요한 순간에도 여유롭게 사용할 수 있으며,
+                    필요한 파츠를 조합해 나만의 텀블러로 확장할 수 있습니다.
+                </p>
+            </figcaption>
+        </figure>
     </section>
 
     <section id="detail">
